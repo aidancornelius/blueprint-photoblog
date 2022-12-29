@@ -1,0 +1,26 @@
+<% if current_user && current_user.admin? %>
+<div id="posts-drafts" class="grid-container">
+  <% @posts_drafts.each do |post| %>
+  <div class="grid-post">
+    <%= link_to "Preview →", post, class: "read-post" %>
+    <%= render post %>
+  </div>
+  <% end %>
+</div>
+<% end %>
+
+<div id="posts" class="grid-container">
+  <% @posts.each do |post| %>
+  <div class="grid-post">
+    <%= link_to "Read →", "/#{post.published_at.year}/#{post.slug}", class: "read-post" %>
+    <%= render post %>
+  </div>
+  <% end %>
+</div>
+
+<div class="clearfix"></div>
+<%= paginate @posts %>
+
+<% if current_user && current_user.admin? %>
+<%= link_to "New post", new_post_path %>
+<% end %>

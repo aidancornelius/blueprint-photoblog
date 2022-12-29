@@ -1,0 +1,9 @@
+<div class="post_container">
+  <div class="post_title"><h1><%= link_to post.title, post %></h1></div>
+  <div class="post_meta"><p>Published <%= post.published_at.strftime("%I:%M%P on %A, %B #{post.published_at.day.ordinalize} %Y")  %> <% if @publisher %> by <span class="name"><%= @publisher.display_name %></span> &mdash; <a href="/<%= post.published_at.year %>/<%= post.slug %>">permalink</a><% end %></p></div>
+  
+  <% if post.image.attached? %>
+  <div class="post_image" style="background-image: url(<%= url_for(post.image) %>);" title="<%= post.image_description %>" alt="<%= post.image_description %>"></div>
+  <% end %>
+
+</div>

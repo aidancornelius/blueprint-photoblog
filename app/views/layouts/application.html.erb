@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blueprint</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav class="navigation">
+        <h1>Blueprint: a (photo) blog about nothing in particular.</h1>
+        <p> <%= link_to "Home", root_url %> <% if current_user %> <%= link_to "Posts", posts_url %> <span class="user_details"><%= link_to "Ninna Marni, #{current_user.display_name}", edit_user_registration_url %></span> <% else %> <%= link_to "Sign in", new_user_session_url %> <% end %></p>
+      </nav>
+      <% if notice %><div class="notice"><p><%= notice %></p></div><% end %>
+      
+      <main class="main">
+        <%= yield %>
+      </main>
+      
+      <footer class="footer">
+        <span class="copy">&copy; some rights reserved, <%= Date.today.strftime("#{Date.today.day.ordinalize} %B %Y")  %> CC-NC-SA Aidan Cornelius-Bell.</span>
+        <span class="where">Photos (mostly) from Tarntanya (red kangaroo place), Kaurna Country.</span>
+        <span class="acknowledgement">Ngadlu tampinthi yalaka ngadlu Kaurna yartangka inparrinthi. Ngadludlu tampinthi, parnaku tuwila yartangka. I acknowledge the Kaurna people as custodians of these lands and waters. I acknowledge those who walked before, Elders, ancestors and knowledge holders. Always was, always will be.</span>
+      </footer>
+    </div>
+  </body>
+</html>
